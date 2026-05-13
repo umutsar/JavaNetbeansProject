@@ -76,6 +76,7 @@ public class CashierUI extends javax.swing.JFrame {
                 "Product Name", "Price", "Final Price"
             }
         ));
+        basketTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(basketTable);
 
         jLabel2.setText("Total:");
@@ -185,42 +186,41 @@ public class CashierUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_productNameFieldActionPerformed
 
+// HELPER METHOD: Recalculates the total price by iterating through the table rows
     public void updateTotal() {
         double currentTotal = 0;
-        // Tablodaki her satırı gezip 2. sütundaki (Final Price) değerleri toplar
+        // Business Logic: Traverse the JTable and sum up the 'Final Price' column
         for (int i = 0; i < basketTable.getRowCount(); i++) {
             currentTotal += (double) basketTable.getValueAt(i, 2);
         }
-        // Sonucu etikete yazdırır
+        // UI Update: Update the total amount label with formatted currency
         totalLabel.setText(String.format("%.2f", currentTotal));
     }
 
+    // ACTION: Manual data entry from text fields to basket
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         try {
-            // 1. Get data from text fields
+            // Data Retrieval: Extracting user input from text fields
             String name = productNameField.getText();
             double price = Double.parseDouble(priceField.getText());
 
-            // 2. Use our Product class and calculate tax (Math Concept)
+            // POLYMORPHISM: Creating a product object and calculating final price
             Product p = new Product(name, price, "BAR-001");
             double finalPriceWithTax = p.calculateFinalPrice();
 
-            // 3. Add to Table (Data in array form)
+            // DATA BINDING: Adding object data to the JTable model
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) basketTable.getModel();
             model.addRow(new Object[]{p.getName(), p.getPrice(), finalPriceWithTax});
-            // Genel toplamı hesapla
-            double currentTotal = 0;
-            for (int i = 0; i < basketTable.getRowCount(); i++) {
-                currentTotal += (double) basketTable.getValueAt(i, 2); // Final Price sütununu topla
-            }
-            totalLabel.setText(String.format("%.2f", currentTotal));
+
+            // Updating the overall total
             updateTotal();
-            // 4. Clear fields for next entry
+
+            // UI RESET: Clear input fields for better user experience (UX)
             productNameField.setText("");
             priceField.setText("");
 
         } catch (Exception e) {
-            // Simple Exception Handling 
+            // EXCEPTION HANDLING: Prevent system crash on invalid input
             javax.swing.JOptionPane.showMessageDialog(this, "Please enter a valid numeric price!");
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -229,29 +229,26 @@ public class CashierUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_priceFieldActionPerformed
 
+    // ACTION: Removes the selected item from the table
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         int selectedRow = basketTable.getSelectedRow();
         if (selectedRow != -1) {
+            // Logic: Remove row and refresh the total
             DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
             model.removeRow(selectedRow);
-
-            // Sildikten sonra toplamı tekrar hesaplat (Yukarıdaki toplam koduyla aynı)
-            double currentTotal = 0;
-            for (int i = 0; i < basketTable.getRowCount(); i++) {
-                currentTotal += (double) basketTable.getValueAt(i, 2);
-            }
-            totalLabel.setText(String.format("%.2f", currentTotal));
+            updateTotal();
         } else {
+            // Validation: Inform user if no row is selected
             javax.swing.JOptionPane.showMessageDialog(this, "Please select a product to remove!");
         }
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void btnBreadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBreadActionPerformed
         try {
+            // Pre-defined Object Creation
             Product p = new Product("Bread", 12.0, "BREAD-001");
-            double finalPrice = p.calculateFinalPrice();
             DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
-            model.addRow(new Object[]{p.getName(), p.getPrice(), finalPrice});
+            model.addRow(new Object[]{p.getName(), p.getPrice(), p.calculateFinalPrice()});
             updateTotal();
         } catch (Exception e) {
         }

@@ -1,24 +1,25 @@
 package supermarketcashiersystem;
 
 public class Product {
-    // 1. ACCESS CONTROL: Değişkenleri 'private' yaparak veriyi koruyoruz (10 Puan) 
+    // 1. ENCAPSULATION: Protect data using private access modifiers
     private String name;
     private double price;
     private String barcode;
 
-    // 2. CONSTRUCTOR: Nesne yaratılırken çalışan yapıcı metot (10 Puan) 
+    // 2. CONSTRUCTOR: Method to initialize objects with specific values
     public Product(String name, double price, String barcode) {
         this.name = name;
         this.price = price;
         this.barcode = barcode;
     }
 
-    // 3. GETTER/SETTER: Private verilere güvenli erişim (10 Puan) 
+    // 3. ACCESS CONTROL: Securely accessing private data via Getters
     public String getName() { return name; }
     public double getPrice() { return price; }
     
-    // 4. MATH CONCEPT: Basit bir KDV hesaplama (10 Puan) 
+    // 4. ABSTRACTION & LOGIC: Calculating VAT (KDV) inside the class logic
     public double calculateFinalPrice() {
-        return this.price * 1.20; // %20 KDV eklenmiş hali
+        // Business Logic: Returning price with 20% VAT included
+        return this.price * 1.20; 
     }
 }
