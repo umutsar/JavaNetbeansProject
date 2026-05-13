@@ -4,6 +4,8 @@
  */
 package supermarketcashiersystem;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author superuser
@@ -28,6 +30,7 @@ public class CashierUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         productNameText = new javax.swing.JLabel();
         productNameField = new javax.swing.JTextField();
@@ -36,11 +39,22 @@ public class CashierUI extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         basketTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        removeButton = new javax.swing.JButton();
+        btnBread = new javax.swing.JButton();
+        btnWater = new javax.swing.JButton();
+        btnMilk = new javax.swing.JButton();
+        btnEgg = new javax.swing.JButton();
+        totalLabel = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jLabel1.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
         jLabel1.setText("SUPERMARKET CASHIER SYSTEM");
+        jLabel1.setToolTipText("");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         productNameText.setText("Product Name:");
 
@@ -50,6 +64,7 @@ public class CashierUI extends javax.swing.JFrame {
 
         priceField.addActionListener(this::priceFieldActionPerformed);
 
+        addButton.setBackground(new java.awt.Color(102, 255, 102));
         addButton.setText("Add to Basket");
         addButton.addActionListener(this::addButtonActionPerformed);
 
@@ -63,48 +78,103 @@ public class CashierUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(basketTable);
 
+        jLabel2.setText("Total:");
+
+        removeButton.setBackground(new java.awt.Color(255, 51, 51));
+        removeButton.setText("Remove Selected");
+        removeButton.addActionListener(this::removeButtonActionPerformed);
+
+        btnBread.setText("Add Bread");
+        btnBread.addActionListener(this::btnBreadActionPerformed);
+
+        btnWater.setText("Add Water");
+        btnWater.addActionListener(this::btnWaterActionPerformed);
+
+        btnMilk.setText("Add Milk");
+        btnMilk.addActionListener(this::btnMilkActionPerformed);
+
+        btnEgg.setText("Add Egg");
+        btnEgg.addActionListener(this::btnEggActionPerformed);
+
+        totalLabel.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(productNameText)
                             .addComponent(priceText))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addButton)
-                            .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(309, 309, 309))
+                            .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBread, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnWater, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMilk, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEgg, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jScrollPane1)
-                .addGap(25, 25, 25))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(281, 281, 281)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBread, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMilk, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnWater, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEgg, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productNameText)
+                            .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priceText)
+                            .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(productNameText)
-                    .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priceText)
-                    .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(totalLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -114,6 +184,16 @@ public class CashierUI extends javax.swing.JFrame {
     private void productNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productNameFieldActionPerformed
+
+    public void updateTotal() {
+        double currentTotal = 0;
+        // Tablodaki her satırı gezip 2. sütundaki (Final Price) değerleri toplar
+        for (int i = 0; i < basketTable.getRowCount(); i++) {
+            currentTotal += (double) basketTable.getValueAt(i, 2);
+        }
+        // Sonucu etikete yazdırır
+        totalLabel.setText(String.format("%.2f", currentTotal));
+    }
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         try {
@@ -128,7 +208,13 @@ public class CashierUI extends javax.swing.JFrame {
             // 3. Add to Table (Data in array form)
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) basketTable.getModel();
             model.addRow(new Object[]{p.getName(), p.getPrice(), finalPriceWithTax});
-
+            // Genel toplamı hesapla
+            double currentTotal = 0;
+            for (int i = 0; i < basketTable.getRowCount(); i++) {
+                currentTotal += (double) basketTable.getValueAt(i, 2); // Final Price sütununu topla
+            }
+            totalLabel.setText(String.format("%.2f", currentTotal));
+            updateTotal();
             // 4. Clear fields for next entry
             productNameField.setText("");
             priceField.setText("");
@@ -142,6 +228,67 @@ public class CashierUI extends javax.swing.JFrame {
     private void priceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceFieldActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        int selectedRow = basketTable.getSelectedRow();
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
+            model.removeRow(selectedRow);
+
+            // Sildikten sonra toplamı tekrar hesaplat (Yukarıdaki toplam koduyla aynı)
+            double currentTotal = 0;
+            for (int i = 0; i < basketTable.getRowCount(); i++) {
+                currentTotal += (double) basketTable.getValueAt(i, 2);
+            }
+            totalLabel.setText(String.format("%.2f", currentTotal));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a product to remove!");
+        }
+    }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void btnBreadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBreadActionPerformed
+        try {
+            Product p = new Product("Bread", 12.0, "BREAD-001");
+            double finalPrice = p.calculateFinalPrice();
+            DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
+            model.addRow(new Object[]{p.getName(), p.getPrice(), finalPrice});
+            updateTotal();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnBreadActionPerformed
+
+    private void btnWaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWaterActionPerformed
+        try {
+            Product p = new Product("Water", 5.0, "WATER-001");
+            double finalPrice = p.calculateFinalPrice();
+            DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
+            model.addRow(new Object[]{p.getName(), p.getPrice(), finalPrice});
+            updateTotal();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnWaterActionPerformed
+
+    private void btnMilkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMilkActionPerformed
+        try {
+            Product p = new Product("Milk", 35.0, "MILK-001");
+            double finalPrice = p.calculateFinalPrice();
+            DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
+            model.addRow(new Object[]{p.getName(), p.getPrice(), finalPrice});
+            updateTotal();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnMilkActionPerformed
+
+    private void btnEggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEggActionPerformed
+        try {
+            Product p = new Product("Egg", 50.0, "EGG-001");
+            double finalPrice = p.calculateFinalPrice();
+            DefaultTableModel model = (DefaultTableModel) basketTable.getModel();
+            model.addRow(new Object[]{p.getName(), p.getPrice(), finalPrice});
+            updateTotal();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEggActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,11 +318,19 @@ public class CashierUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JTable basketTable;
+    private javax.swing.JButton btnBread;
+    private javax.swing.JButton btnEgg;
+    private javax.swing.JButton btnMilk;
+    private javax.swing.JButton btnWater;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField priceField;
     private javax.swing.JLabel priceText;
     private javax.swing.JTextField productNameField;
     private javax.swing.JLabel productNameText;
+    private javax.swing.JButton removeButton;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }
