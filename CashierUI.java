@@ -84,16 +84,16 @@ public class CashierUI extends javax.swing.JFrame {
         removeButton.setText("Remove Selected");
         removeButton.addActionListener(this::removeButtonActionPerformed);
 
-        btnBread.setText("Add Bread");
+        btnBread.setText("Add Bread (12)");
         btnBread.addActionListener(this::btnBreadActionPerformed);
 
-        btnWater.setText("Add Water");
+        btnWater.setText("Add Water (5)");
         btnWater.addActionListener(this::btnWaterActionPerformed);
 
-        btnMilk.setText("Add Milk");
+        btnMilk.setText("Add Milk (35)");
         btnMilk.addActionListener(this::btnMilkActionPerformed);
 
-        btnEgg.setText("Add Egg");
+        btnEgg.setText("Add Egg (50)");
         btnEgg.addActionListener(this::btnEggActionPerformed);
 
         totalLabel.setText("0");

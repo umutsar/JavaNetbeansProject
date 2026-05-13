@@ -231,7 +231,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBread">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Bread"/>
+        <Property name="text" type="java.lang.String" value="Add Bread (12)"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBreadActionPerformed"/>
@@ -239,7 +239,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnWater">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Water"/>
+        <Property name="text" type="java.lang.String" value="Add Water (5)"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWaterActionPerformed"/>
@@ -247,7 +247,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMilk">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Milk"/>
+        <Property name="text" type="java.lang.String" value="Add Milk (35)"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMilkActionPerformed"/>
@@ -255,7 +255,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEgg">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Egg"/>
+        <Property name="text" type="java.lang.String" value="Add Egg (50)"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEggActionPerformed"/>
